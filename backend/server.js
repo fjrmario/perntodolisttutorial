@@ -1,13 +1,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const connectDb = require("./db");
+const dotenv = require("dotenv");
+dotenv.config();
+console.log(dotenv.config());
+require("./config/database");
 
 const PORT = 3000;
+const todosRouter = require("./Routes/todoRoutes");
 
 app.use(cors());
 app.use(express.json());
-app.use(connectDb());
+
+app.use("api/todos", todosRouter);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
