@@ -10,4 +10,25 @@ const credentials = {
 
 const pool = new Pool(credentials);
 
+pool.connect((error, client, release) => {
+  if (error) {
+    console.error("Error connecting to the database:", error.message);
+    return;
+  }
+
+  console.log("Connected to PostgreSQL.");
+
+  // Perform a test query
+  client.query("SELECT NOW()", (queryError, result) => {
+    release(); // Release the client back to the pool
+
+    if (queryError) {
+      console.error("Error executing query:", queryError.message);
+      return;
+    }
+
+    console.log("PostgreSQL query result:", result.rows);
+  });
+});
+
 module.exports = pool;
