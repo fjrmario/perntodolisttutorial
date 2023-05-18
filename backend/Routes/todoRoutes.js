@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { createNewTodos } = require("../Controllers/todoControllers");
+const {
+  getAlltodos,
+  createNewTodos,
+} = require("../Controllers/todoControllers");
 
 //get all to do list
-router.get("/");
+router.get("/", getAlltodos);
 
 // create a new to do list
 router.post("/", createNewTodos);
