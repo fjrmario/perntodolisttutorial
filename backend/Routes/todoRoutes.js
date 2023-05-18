@@ -14,7 +14,7 @@ router.get("/", getAlltodos);
 router.post("/", createNewTodos);
 
 //delete a todolist
-// router.delete("/:id", deleteAnyTodos);
+router.delete("/:id", deleteAnyTodos);
 
 //edit todos
 router.put("/:id", updateAnyTodos);
