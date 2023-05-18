@@ -4,7 +4,7 @@ const createNewTodos = async (req, res) => {
   console.log(req.body);
   const { todo } = req.body;
   try {
-    const query = "INSERT INTO todos (todo) VALUES ($1) RETURNING *";
+    const query = "INSERT INTO todo (todo) VALUES ($1) RETURNING *";
     const values = [todo];
     const result = await pool.query(query, values);
 
