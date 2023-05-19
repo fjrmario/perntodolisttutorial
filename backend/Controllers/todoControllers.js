@@ -2,7 +2,7 @@ const pool = require("../config/database");
 
 const getAlltodos = async (req, res) => {
   try {
-    const query = "SELECT todo FROM todo";
+    const query = "SELECT * FROM todo ORDER BY id DESC";
     const result = await pool.query(query);
     const todo = result.rows;
 
@@ -10,7 +10,7 @@ const getAlltodos = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ error: "An error occurred while creating the todo." });
+      .json({ error: "An error occurred while fetching the todo." });
   }
 };
 
@@ -32,6 +32,7 @@ const createNewTodos = async (req, res) => {
 
 const updateAnyTodos = async (req, res) => {
   const { id } = req.params;
+  console.log(req.body);
   const { todo } = req.body;
 
   try {

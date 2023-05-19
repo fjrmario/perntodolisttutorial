@@ -12,6 +12,7 @@ function Form() {
 
     try {
       if (!todo) {
+        return;
       }
       const response = await fetch(`${BASE_URL}`, {
         method: "POST",
